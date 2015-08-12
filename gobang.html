@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var WIDTH = 50;
+				var HEIGHT = 50;
+				
+				var arr = [];
+				var chessman = true;  // true为白棋，false为黑棋
+				var $chessColor = $(".chess-color");
+				var $timeSeconds = $(".time-seconds");  // 计时显示。
+				
+				// 初始化，生成棋盘。
+				var $checkerboard = $(".checkerboard tbody");
+				for(var j=0;j<WIDTH;j++){
+					var $tr = $("<tr></tr>");
+					for(var i=0;i<HEIGHT;i++){
+						var $td = $("<td></td>")
+						.data("p",{x:i,y:j})
+						.addClass("box-"+i+"-"+j);
+						$tr.append($td);
+					}
+					$checkerboard.append($tr);
+				}
+				
+				// 鼠标移动
+				$checkerboard.find("td")
+				.mouseover(function(){
+					$(this).addClass("bgred");
+				})
+				.mouseout(function(){
+					$(this).removeClass("bgred");
+				})
+				.click(function(){
+					var $this = $(this);
+					// 是否已经被选择。
+					if($this.data("choose")){
+						return;
+					}
+					$this.data("choose",true);
+					
+					// 获取当前坐标点。
+					var p = $this.data("p");
+					arr.push(p);
+					
+					// 显示图片。
+					var $img = null;
+					if(chessman){
+						$img = $('<img src="img/white.png" />');
+						$chessColor.text("黑");
+					}else{
+						$img = $('<img src="img/black.png" />');
+						$chessColor.text("白");
+					}
+					
+					$this.data("chessman",chessman);
+					$this.append($img);
+					
+					if(victory(p)){
+						alert("胜利！")
+					}
+					
+					chessman = !chessman;
+				});
+				
+				// 点击一次表格，即开始计时。
+				$checkerboard.one("click",function(){
+					var t0 = new Date().getTime();
+					setInterval(function(){
+						var t1 = new Date().getTime()
+						$timeSeconds.text(parseInt((t1 - t0)/1000));
+					},250);
+				});
+				
+				// 悔棋按钮
+				$(".undo").click(function(){
+					if(arr.length>0){
+						var p = arr.pop();
+						removeChessman(p);
+						chessman = !chessman;
+					}
+				});
+				
+				function removeChessman(point){
+					var i = point.x;
+					var j = point.y;
+					$(".box-"+i+"-"+j)
+					.removeData("choose")
+					.removeData("chessman")
+					.html("");
+				}
+				
+				// 胜负判断函数
+				function victory(lastp){
+					return check0(lastp) || check1(lastp) || check2(lastp) || check3(lastp);
+				}
+				
+				function check0(lastp){
+					// 当前棋子位置。
+					var lastI = lastp.x;
+					var lastJ = lastp.y;
+					// 当前棋子的颜色。
+					var curChessman = $(".box-"+lastI+"-"+lastJ).data("chessman");
+					
+					var tmpMinI = lastI - 4;
+					var tmpMaxI = lastI + 4;
+					
+					var minI = 0;
+					if(tmpMinI>0){
+						minI = tmpMinI;
+					}
+					
+					var maxI = WIDTH;
+					if(tmpMaxI<WIDTH){
+						maxI = tmpMaxI;
+					}
+					
+					// 检测
+					var boxLine = [];
+					var boxLineTmp = [];
+					// 横向检测 (-)
+					for(var i=minI;i<=maxI;i++){
+						var $box = $(".box-"+i+"-"+lastJ);
+						var choose = $box.data("choose");
+						if(choose){
+							var chessman = $box.data("chessman");
+							if(chessman==curChessman){
+								boxLineTmp.push($box);
+							}else{
+								if(boxLineTmp.length>0){
+									boxLine.push(boxLineTmp)
+								}
+								boxLineTmp = [];
+							}
+						}else{
+							if(boxLineTmp.length>0){
+								boxLine.push(boxLineTmp)
+							}
+							boxLineTmp = [];
+						}
+					}
+					if(boxLineTmp.length>0){
+						boxLine.push(boxLineTmp)
+					}
+					
+					for(var n=0;n<boxLine.length;n++){
+						if(boxLine[n].length>=5){
+							return true;
+						}
+					}
+				}
+				
+				function check1(lastp){
+					// 当前棋子位置。
+					var lastI = lastp.x;
+					var lastJ = lastp.y;
+					// 当前棋子的颜色。
+					var curChessman = $(".box-"+lastI+"-"+lastJ).data("chessman");
+					
+					var tmpMinJ = lastJ - 4;
+					var tmpMaxJ = lastJ + 4;
+					
+					var minJ = 0;
+					if(tmpMinJ>0){
+						minJ = tmpMinJ;
+					}
+					
+					var maxJ = HEIGHT;
+					if(tmpMaxJ<HEIGHT){
+						maxJ = tmpMaxJ;
+					}
+					
+					// 竖向检测 (|)
+					var boxLine = [];
+					var boxLineTmp = [];
+					for(var j=minJ;j<=maxJ;j++){
+						var $box = $(".box-"+lastI+"-"+j);
+						var choose = $box.data("choose");
+						if(choose){
+							var chessman = $box.data("chessman");
+							if(chessman==curChessman){
+								boxLineTmp.push($box);
+							}else{
+								if(boxLineTmp.length>0){
+									boxLine.push(boxLineTmp)
+								}
+								boxLineTmp = [];
+							}
+						}else{
+							if(boxLineTmp.length>0){
+								boxLine.push(boxLineTmp)
+							}
+							boxLineTmp = [];
+						}
+					}
+					if(boxLineTmp.length>0){
+						boxLine.push(boxLineTmp)
+					}
+					
+					for(var n=0;n<boxLine.length;n++){
+						if(boxLine[n].length>=5){
+							return true;
+						}
+					}
+				}
+				
+				function check2(lastp){
+					// 当前棋子位置。
+					var lastI = lastp.x;
+					var lastJ = lastp.y;
+					// 当前棋子的颜色。
+					var curChessman = $(".box-"+lastI+"-"+lastJ).data("chessman");
+					
+					// 斜向检测（\）,即 y = x + b
+					var boxLine = [];
+					var boxLineTmp = [];
+					
+					// 求斜线与x轴，y轴的交点。
+					var b = lastJ - lastI;
+					
+					var minI = lastI-4;
+					var minJ = lastJ-4;
+					var maxI = lastI+4;
+					var maxJ = lastJ+4;
+					
+					if(minI<0 || minJ<0){
+						if(b>=0){
+							minI = 0;
+							minJ = b;
+						}else{
+							minI = -b;
+							minJ = 0;
+						}
+					}
+					
+					if(maxI >= WIDTH-1 || maxJ >= HEIGHT-1){
+						if(b>=0){
+							maxI = HEIGHT-1 - b;
+							maxJ = HEIGHT-1;
+						}else{
+							maxI = WIDTH-1;
+							maxJ = WIDTH-1 + b;
+						}
+					}
+					
+					for(var n=0;n<9;n++){
+						var i = minI + n;
+						if(i>maxI){
+							break;
+						}
+						
+						var j = minJ + n;
+						if(j>maxJ){
+							break;
+						}
+						
+						var $box = $(".box-"+i+"-"+j);
+						var choose = $box.data("choose");
+						if(choose){
+							var chessman = $box.data("chessman");
+							if(chessman==curChessman){
+								boxLineTmp.push($box);
+							}else{
+								if(boxLineTmp.length>0){
+									boxLine.push(boxLineTmp)
+								}
+								boxLineTmp = [];
+							}
+						}else{
+							if(boxLineTmp.length>0){
+								boxLine.push(boxLineTmp)
+							}
+							boxLineTmp = [];
+						}
+					}
+					if(boxLineTmp.length>0){
+						boxLine.push(boxLineTmp)
+					}
+					
+					for(var n=0;n<boxLine.length;n++){
+						if(boxLine[n].length>=5){
+							return true;
+						}
+					}
+				}
+				
+				function check3(lastp){
+					// 当前棋子位置。
+					var lastI = lastp.x;
+					var lastJ = lastp.y;
+					// 当前棋子的颜色。
+					var curChessman = $(".box-"+lastI+"-"+lastJ).data("chessman");
+					
+					// 斜向检测（/）
+					var boxLine = [];
+					var boxLineTmp = [];
+					
+					// 求斜线与x轴，y轴的交点。
+					var b = lastJ + lastI;
+					
+					var minI = lastI-4;
+					var minJ = lastJ-4;
+					var maxI = lastI+4;
+					var maxJ = lastJ+4;
+					
+					if(maxI>WIDTH-1 || minJ<0){
+						if(b>=WIDTH-1){
+							maxI = WIDTH-1;
+							minJ = b - (WIDTH-1);
+						}else{
+							maxI = b;
+							minJ = 0;
+						}
+					}
+					
+					if(minI < 0 || maxJ >= HEIGHT-1){
+						if(b>=WIDTH-1){
+							minI = b - (HEIGHT-1);
+							maxJ = HEIGHT-1;
+						}else{
+							minI = 0;
+							maxJ = b;
+						}
+					}
+					
+					for(var n=0;n<9;n++){
+						var i = maxI - n;
+						if(i<minI){
+							break;
+						}
+						
+						var j = minJ + n;
+						if(j>maxJ){
+							break;
+						}
+						
+						var $box = $(".box-"+i+"-"+j);
+						var choose = $box.data("choose");
+						if(choose){
+							var chessman = $box.data("chessman");
+							if(chessman==curChessman){
+								boxLineTmp.push($box);
+							}else{
+								if(boxLineTmp.length>0){
+									boxLine.push(boxLineTmp)
+								}
+								boxLineTmp = [];
+							}
+						}else{
+							if(boxLineTmp.length>0){
+								boxLine.push(boxLineTmp)
+							}
+							boxLineTmp = [];
+						}
+					}
+					if(boxLineTmp.length>0){
+						boxLine.push(boxLineTmp)
+					}
+					
+					for(var n=0;n<boxLine.length;n++){
+						if(boxLine[n].length>=5){
+							return true;
+						}
+					}
+				}
+				
+				
+			});
+		</script>
+		<style type="text/css">
+			.checkerboard{
+				border-collapse:collapse;
+				cursor:pointer;
+				text-align:center;
+				vertical-align:middle;
+				background-image: url("img/bg2.png");
+				font-size:14px;
+				font-weight:bolder;
+			}
+			
+			.checkerboard tr {
+				height:30px;
+			}
+			
+			.checkerboard tr td {
+				width:30px;
+			}
+			
+			.checkerboard tr td {
+				border: 2px solid rgb(121, 103, 81);
+			}
+			
+			.checkerboard img{
+				width:23px;
+				height:23px;
+			}
+			
+			.bgred {
+				background-color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="float:left">
+			<table class="checkerboard">
+				<tbody></tbody>
+			</table>
+		</div>
+		<div style="float:left;margin-left:20px;">
+			<div>
+				当前执棋：<span class="chess-color">白</span>
+			</div>
+			<div style="margin-top:20px">
+				<input class="undo" type="button" value="悔棋" style="width:100%"/>
+			</div>
+			<div style="margin-top:20px">
+				<p><span>计时：</span><span class="time-seconds">0</span>s</p>
+			</div>
+		</div>
+	</body>	
+</html>
