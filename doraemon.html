@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.doraemon{
+	width:412px;  /* 哆啦A梦的脸围,腰围是 129.3cm ，所以脸宽大约是 1293/3.14 = 411.78343949044586 */
+	height:1293px; /* 哆啦A梦的身高是 129.3cm */
+	position:relative;
+}
+
+.doraemon .head{
+	width:412px;
+	height:412px;
+	border-radius: 206px 206px 216px 216px;
+	background-color: #00A3E9;
+	z-index:0;
+}
+.doraemon .head .eye{
+	width:70px;
+	height: 100px;
+	border-radius: 35px / 50px;
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	position:absolute;
+}
+
+.doraemon .head .eye.eye-left{
+	top:20px;
+	left:136px; /*412/2 - 70 = 206 - 70 = 136*/
+}
+.doraemon .head .eye.eye-right{
+	top:20px;
+	left:206px; /*412/2 = 206*/
+}
+
+.doraemon .head .eyeball{
+	width:4px;
+	height: 10px;
+	border-radius: 5px/9px;
+	border:3px solid black;
+	margin-top: 45px;
+}
+
+.doraemon .head .eye-left .eyeball{
+	float:right;
+	margin-right: 6px;
+
+	margin-left: 50px;
+	animation:eyeballframes 14s infinite linear;
+	-moz-animation:eyeballframes 14s infinite linear;
+	-webkit-animation:eyeballframes 14s infinite linear;
+	-o-animation:eyeballframes 14s infinite linear;
+	
+}
+
+.doraemon .head .eye-right .eyeball{
+	float:left;
+	margin-left: 6px;
+	
+	animation:eyeballframes 24s infinite linear;
+	-moz-animation:eyeballframes 24s infinite linear;
+	-webkit-animation:eyeballframes 24s infinite linear;
+	-o-animation:eyeballframes 24s infinite linear;
+	
+}
+
+.doraemon .head .nose{
+	position:absolute;
+	width:28px;
+	height:28px;
+	border-radius: 14px/14px;
+	background-color:#E62E24;
+	left:192px; /*206-14 = 192*/
+	top:98px;
+}
+
+.doraemon .head .philtrum{
+	width:0px;
+	height:140px;
+	border:1px solid black;
+	position:absolute;
+	left:205px;
+	top:126px;
+}
+
+.doraemon .head .beard{
+	width:130px;
+	height:0px;
+	border:1px solid black;
+	position:absolute;
+	left:205px;
+}
+
+.doraemon .head .beard-left{
+	left:176px;/*206-30*/
+}
+
+.doraemon .head .beard-right{
+	left:236px;/*206+30*/
+}
+
+.doraemon .head .beard-0{
+	top:146px
+}
+.doraemon .head .beard-1{
+	top:186px
+}
+.doraemon .head .beard-2{
+	top:226px
+}
+
+.doraemon .head .beard-left.beard-0{
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	transform-origin:0 0;
+	-webkit-transform:rotate(190deg);
+	-moz-transform:rotate(190deg);
+	-o-transform:rotate(190deg);
+	transform: rotate(190deg);
+}
+
+.doraemon .head .beard-left.beard-1{
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	transform-origin:0 0;
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.doraemon .head .beard-left.beard-2{
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	transform-origin:0 0;
+	-webkit-transform:rotate(170deg);
+	-moz-transform:rotate(170deg);
+	-o-transform:rotate(170deg);
+	transform: rotate(170deg);
+}
+
+.doraemon .head .beard-right.beard-0{
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	transform-origin:0 0;
+	-webkit-transform:rotate(-10deg);
+	-moz-transform:rotate(-10deg);
+	-o-transform:rotate(-10deg);
+	transform: rotate(-10deg);
+}
+
+.doraemon .head .beard-right.beard-1{
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	transform-origin:0 0;
+	-webkit-transform:rotate(0deg);
+	-moz-transform:rotate(0deg);
+	-o-transform:rotate(0deg);
+	transform: rotate(0deg);
+}
+
+.doraemon .head .beard-right.beard-2{
+	-webkit-transform-origin:0 0;
+	-moz-transform-origin:0 0;
+	-o-transform-origin:0 0;
+	transform-origin:0 0;
+	-webkit-transform:rotate(10deg);
+	-moz-transform:rotate(10deg);
+	-o-transform:rotate(10deg);
+	transform: rotate(10deg);
+}
+
+.doraemon .head .mouth{
+	-webkit-transform:rotate(225deg);
+	-moz-transform:rotate(225deg);
+	-o-transform:rotate(225deg);
+	transform: rotate(225deg);
+	
+	background-color: #FFFFFF;
+	width:200px;
+	height:200px;
+	border-radius: 600px 0 0px 0;
+	border-left: 2px solid black;
+	border-top: 2px solid black;
+	position:absolute;
+	left:105px;
+	top:120px;
+}
+
+.doraemon .head .face{
+	background-color: #FFFFFF;
+	width:372px;
+	height:352px;
+	border-radius: 156px 156px 186px 186px;
+	border: 1px solid black;
+	position:absolute;
+	left:20px;
+	top:65px;
+	z-index:0;
+}
+
+.doraemon .head .tongue{
+	-webkit-transform-origin:50% 0;
+	-moz-transform-origin:50% 0;
+	-o-transform-origin:50% 0;
+	transform-origin:50% 0;
+	
+	-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);
+	
+	height:210px;
+	width:60px;
+	border-radius: 156px 156px 186px 186px;
+	
+	background-color:#E62E24;
+	position:absolute;
+	left:176px;
+	top:125px;
+	
+	animation:tongueframes 10s infinite linear;
+	-moz-animation:tongueframes 10s infinite linear;
+	-webkit-animation:tongueframes 10s infinite linear;
+	-o-animation:tongueframes 10s infinite linear;
+	
+}
+
+.doraemon .collar{
+	height:10px;
+	width:282px;
+	background-color:#E62E24;
+	border:1px solid black;
+	position:absolute;
+	top:355px;
+	left:65px;
+	z-index:20;
+}
+
+.doraemon .collar .bell{
+	height:30px;
+	width:30px;
+	border-radius:30px;
+	-moz-border-radius:30px;
+	background-color:yellow;
+	border:3px solid black;
+	position:absolute;
+	left:125px;
+	top:0px;
+}
+
+.doraemon .collar .bell .line0{
+	width:34px;
+	height:4px;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	border:2px solid black;
+	background-color:yellow;
+	position:absolute;
+	left:-4px;
+	top:5px;
+	
+}
+
+.doraemon .collar .bell .line1{
+	width:4px;
+	height:4px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	border:2px solid black;
+	position:absolute;
+	left:11px;
+	top:14px;
+}
+
+.doraemon .collar .bell .line2{
+	width:0px;
+	height:10px;
+	border:1px solid black;
+	position:absolute;
+	left:14px;
+	top:20px;
+}
+
+.doraemon .body{
+	width:304px;
+	height:270px;
+	border-radius: 60px 60px 30px 30px/700px 700px 800px 800px;
+	background-color: #00A3E9;
+	position:absolute;
+	left:54px;
+	top:366px;
+	z-index:10;
+	border: 1px solid black;
+}
+
+.doraemon .body:after{
+	content: ""; 
+	width:98px;
+	height:80px;
+	border-radius:30px/40px;
+	background-color:white;
+	position:absolute;
+	left:103px;
+	top:240px;
+}
+
+.doraemon .body .belly{
+	background-color: #FFFFFF;
+	width:264px; 
+	height:224px;
+	border-radius:146px 146px 166px 166px;
+	border: 1px solid black;
+	position:absolute;
+	left:20px;
+	top:-12px;
+	z-index:10;
+}
+
+.doraemon .body .belly .viking-treasure-bag{
+	background-color: #FFFFFF;
+	width:210px;
+	height:105px;
+	border-radius: 0 0 105px 105px;
+	border: 2px solid black;
+	position:absolute;
+	left:28px;
+	top:90px;
+}
+
+.doraemon .body .arm{
+	border-top:130px solid #00A3E9;
+	border-left: 10px solid transparent; 
+	border-right: 10px solid transparent; 
+	height: 0;
+	width: 40px;
+	
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	transform-origin: 0 0;
+	
+	-webkit-transform:rotate(60deg);
+	-moz-transform:rotate(60deg);
+	-o-transform:rotate(60deg);
+	transform: rotate(60deg);
+	
+	position:absolute;
+	left:20px;
+	top:0px;
+}
+
+.doraemon .body .arm-left{
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	transform-origin: 0 0;
+	
+	-webkit-transform:rotate(60deg);
+	-moz-transform:rotate(60deg);
+	-o-transform:rotate(60deg);
+	transform: rotate(60deg);
+	
+	position:absolute;
+	left:9px;
+	top:0px;
+}
+
+.doraemon .body .arm-right{
+	-webkit-transform-origin: 100% 0;
+	-moz-transform-origin: 100% 0;
+	-o-transform-origin: 100% 0;
+	transform-origin: 100% 0;
+	
+	-webkit-transform:rotate(-105deg);
+	-moz-transform:rotate(-105deg);
+	-o-transform:rotate(-105deg);
+	transform: rotate(-105deg);
+	
+	position:absolute;
+	left:225px;
+	top:0px;
+	
+	animation: armframes 2s infinite linear;
+	-moz-animation: armframes 2s infinite linear;
+	-webkit-animation: armframes 2s infinite linear;
+	-o-animation: armframes 2s infinite linear;
+}
+
+.doraemon .body .arm .hand{
+	width:45px;
+	height:45px;
+	border-radius:45px;
+	border:2px solid black;
+	background-color:white;
+	margin-top:-10px;
+	margin-left:-4px;
+}
+
+.doraemon .body  .foot{
+	width:120px;
+	height:50px;
+	border-radius:60px/25px;
+	border:2px solid black;
+	background-color:white;
+	position:absolute;
+	top:260px;
+	z-index:30;
+}
+
+.doraemon .body  .foot-left{
+	left:-10px;
+}
+
+.doraemon .body  .foot-right{
+	left:190px;
+}
+
+</style>
+<style type="text/css">
+@keyframes tongueframes{
+0% {-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+50% {
+	-webkit-transform:rotate(-40deg);
+	-moz-transform:rotate(-40deg);
+	-o-transform:rotate(-40deg);
+	transform: rotate(-40deg);}
+100%{
+	-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+}
+
+@-webkit-keyframes tongueframes{
+0% {-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+50% {
+	-webkit-transform:rotate(-40deg);
+	-moz-transform:rotate(-40deg);
+	-o-transform:rotate(-40deg);
+	transform: rotate(-40deg);}
+100%{
+	-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+}
+
+@-moz-keyframes tongueframes{
+0% {-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+50% {
+	-webkit-transform:rotate(-40deg);
+	-moz-transform:rotate(-40deg);
+	-o-transform:rotate(-40deg);
+	transform: rotate(-40deg);}
+100%{
+	-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+}
+
+@-o-webkit-keyframes tongueframes{
+0% {-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+50% {
+	-webkit-transform:rotate(-40deg);
+	-moz-transform:rotate(-40deg);
+	-o-transform:rotate(-40deg);
+	transform: rotate(-40deg);}
+100%{
+	-webkit-transform:rotate(40deg);
+	-moz-transform:rotate(40deg);
+	-o-transform:rotate(40deg);
+	transform: rotate(40deg);}
+}
+
+@keyframes eyeballframes{
+	0% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	25% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	26% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	74% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	75% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	100%{
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+}
+
+@-webkit-keyframes eyeballframes{
+	0% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	25% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	26% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	74% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	75% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	100%{
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+}
+
+@-moz-keyframes eyeballframes{
+	0% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	25% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	26% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	74% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	75% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	100%{
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+}
+
+@-o-webkit-keyframes eyeballframes{
+	0% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	25% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	26% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	74% {
+		width:20px;
+		height: 20px;
+		border-radius: 20px/20px;
+		border-style:solid;
+		border-color:black;
+		border-width:3px 1px 0 1px;
+		margin-top: 45px;
+	}
+	75% {
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+	100%{
+		width:4px;
+		height: 10px;
+		border-radius: 5px/9px;
+		border:3px solid black;
+		margin-top: 45px;
+	}
+}
+
+@keyframes armframes{
+	0% {-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+	50% {
+		-webkit-transform:rotate(-90deg);
+		-moz-transform:rotate(-90deg);
+		-o-transform:rotate(-90deg);
+		transform: rotate(-90deg);
+	}
+	100%{
+		-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+}
+
+@-webkit-keyframes armframes{
+	0% {-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+	50% {
+		-webkit-transform:rotate(-90deg);
+		-moz-transform:rotate(-90deg);
+		-o-transform:rotate(-90deg);
+		transform: rotate(-90deg);
+	}
+	100%{
+		-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+}
+
+@-moz-keyframes armframes{
+	0% {-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+	50% {
+		-webkit-transform:rotate(-90deg);
+		-moz-transform:rotate(-90deg);
+		-o-transform:rotate(-90deg);
+		transform: rotate(-90deg);
+	}
+	100%{
+		-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+}
+
+@-o-webkit-keyframes armframes{
+	0% {-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+	50% {
+		-webkit-transform:rotate(-90deg);
+		-moz-transform:rotate(-90deg);
+		-o-transform:rotate(-90deg);
+		transform: rotate(-90deg);
+	}
+	100%{
+		-webkit-transform:rotate(-105deg);
+		-moz-transform:rotate(-105deg);
+		-o-transform:rotate(-105deg);
+		transform: rotate(-105deg);
+	}
+}
+
+</style>
+<style type="text/css">
+.doraemon{
+	margin-left:auto;
+	margin-right:auto;
+}
+</style>
+<style type="text/css">
+.doraemon{
+	margin-left:auto;
+	margin-right:auto;
+}
+</style>
+</head>
+<body>
+	<div class="doraemon">
+		<div class="head">
+			<div class="face"></div>
+			<div class="tongue"></div>
+			<div class="mouth"></div>
+			<div class="eye eye-left"><div class="eyeball"></div></div>
+			<div class="eye eye-right"><div class="eyeball"></div></div>
+			<div class="nose"></div>
+			<div class="philtrum"></div>
+			<div class="beard beard-left beard-0"></div>
+			<div class="beard beard-left beard-1"></div>
+			<div class="beard beard-left beard-2"></div>
+			<div class="beard beard-right beard-0"></div>
+			<div class="beard beard-right beard-1"></div>
+			<div class="beard beard-right beard-2"></div>
+		</div>
+		<div class="collar">
+			<div class="bell">
+				<div class="line0"></div>
+				<div class="line1"></div>
+				<div class="line2"></div>
+			</div>
+		</div>
+		<div class="body">
+			
+			<div class="arm arm-left">
+				<div class="hand"></div>
+			</div>
+			<div class="arm arm-right">
+				<div class="hand"></div>
+			</div>
+			
+			<div class="belly">
+				<div class="viking-treasure-bag"></div>
+			</div>
+			
+			<div class="foot foot-left"></div>
+			<div class="foot foot-right"></div>
+			
+		</div>
+	</div>
+</body>
+</html>
