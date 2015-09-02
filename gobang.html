@@ -6,9 +6,9 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script>
-			$('<img src="img/white.png" />');
-			$('<img src="img/black.png" />');
-			$('<img src="img/bg2.png" />');
+			$('<img src="img/gobang/white.png" />');
+			$('<img src="img/gobang/black.png" />');
+			$('<img src="img/gobang/bg2.png" />');
 		</script>
 		<script type="text/javascript">
 			$(function(){
@@ -56,10 +56,10 @@
 					// 显示图片。
 					var $img = null;
 					if(chessman){
-						$img = $('<img src="img/white.png" />');
+						$img = $('<img src="img/gobang/white.png" />');
 						$chessColor.text("黑");
 					}else{
-						$img = $('<img src="img/black.png" />');
+						$img = $('<img src="img/gobang/black.png" />');
 						$chessColor.text("白");
 					}
 					
@@ -383,7 +383,7 @@
 				cursor:pointer;
 				text-align:center;
 				vertical-align:middle;
-				background-image: url("img/bg2.png");
+				background-image: url("img/gobang/bg2.png");
 				font-size:14px;
 				font-weight:bolder;
 				width:1700px;
