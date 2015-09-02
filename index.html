@@ -14,6 +14,9 @@
 		.bold{
 		    font-weight:bold;
 		}
+		.font-small{
+			font-size: 10px;
+		}
 		.step:not(.active) {
 			opacity: 0.2;
 		}
@@ -25,25 +28,25 @@
     </div>
 	<div id="impress">
 		<div class="step" data-x="0" data-y="0">
-			<p>欢迎访问！</p>
-			<p>请按空格，继续浏览</p>
+			<p class="bold">欢迎访问！</p>
+			<p class="font-small">请按空格，继续浏览</p>
 		</div>
 		<div class="step" data-x="1500" data-y="0">
 			<p>我是一名程序员。</p>
-			<p>一位骄傲的<span class="bold">程序员</span>。<p>
+			<p>一名骄傲的<span class="bold">程序员</span>。<p>
 		</div>
 		<div class="step" data-y="1300" data-y="0">
-			<p>我擅长物理，数学。热爱编程！</p>
+			<p>我擅长<span class="bold">物理</span>，<span class="bold">数学</span>。热爱<span class="bold">编程！</span></p>
 		</div>
 		<div class="step" data-x="1500" data-y="-1000" data-scale = "10">
-			<p>善于学习，并且不断的在学习！</p>
-			<p>技术全面，追求极限！</p>
+			<p>善于<span class="bold">学习</span>，并且不断的在学习！</p>
+			<p>技术全面，追求<span class="bold">极限！</span></p>
 		</div>
 		<div class="step" data-x="-500" data-y="-30" data-rotate-x="60" data-rotate-y="-60" data-rotate-z="30">
 			<p>现在！我渴望释放能量。</p>
 		</div>
 		<div class="step" data-x="1500" data-y="-1000">
-			<p>我的武器库：</p>
+			<p class="bold">我的武器库：</p>
 			<ul>
 				<li>Java</li>
 				<li>Scala</li>
@@ -53,7 +56,7 @@
 			</ul>
 		</div>
 		<div class="step" data-x="1500" data-y="-1000" data-scale = "5" data-rotate-x="120" data-rotate-y="-30" data-rotate-z="90">
-			<p>并发</p>
+			<p class="bold">并发</p>
 			<ul>
 				<li>JUC</li>
 				<li>AKKA/Actor</li>
@@ -61,7 +64,7 @@
 			</ul>
 		</div>
 		<div class="step" data-x="2000" data-y="-1500" data-scale = "2.5" data-rotate-x="30" data-rotate-y="-30" data-rotate-z="0">
-			<p>网络</p>
+			<p class="bold">网络</p>
 			<ul>
 				<li>NIO</li>
 				<li>Netty</li>
@@ -70,7 +73,7 @@
 			</ul>
 		</div>
 		<div class="step" data-x="2500" data-y="-2000" data-scale = "1.25" data-rotate-x="30" data-rotate-y="40" data-rotate-z="90">
-			<p>大数据</p>
+			<p class="bold">大数据</p>
 			<ul>
 				<li>Hadoop</li>
 				<li>Spark</li>
@@ -78,7 +81,7 @@
 			</ul>
 		</div>
 		<div class="step" data-x="3000" data-y="-2500" data-scale = "0.625" data-rotate-x="10" data-rotate-y="-10" data-rotate-z="60">
-			<p>数据库</p>
+			<p class="bold">数据库</p>
 			<ul>
 				<li>MySQL</li>
 				<li>Redis</li>
@@ -86,7 +89,7 @@
 			</ul>
 		</div>
 		<div class="step" data-x="3500" data-y="-3000" data-scale = "0.3125" data-rotate-x="-30" data-rotate-y="-30" data-rotate-z="-90">
-			<p>前端</p>
+			<p class="bold">前端</p>
 			<ul>
 				<li>HTML5</li>
 				<li>jQuery</li>
@@ -95,7 +98,7 @@
 			</ul>
 		</div>
 		<div class="step" data-x="4000" data-y="-3500" data-scale = "0.15625" data-rotate-x="120" data-rotate-y="-30" data-rotate-z="90">
-			<p>运维</p>
+			<p class="bold">运维</p>
 			<ul>
 				<li>Linux</li>
 				<li>Python/Shell</li>
@@ -104,11 +107,19 @@
 			</ul>
 		</div>
 		<div class="step" data-x="0" data-y="-800" data-rotate="90">
-			<p>全栈只是一个标签。</p>
+			<p><span class="bold">全栈</span>只是一个标签。</p>
 		</div>
 		<div class="step" data-x="-1200" data-y="0" data-rotate-x="120" data-rotate-y="-30" data-rotate-z="90" data-scale="10">
-			<p>成为一名优秀的系统架构师</p>
+			<p>成为一名优秀的<span class="bold">系统架构师</span></p>
 			<p>是我的职业目标。</p>
+		</div>
+		<div class="step" data-x="400" data-y="100" data-rotate-x="-45" data-rotate-y="-30" data-rotate-z="90" data-scale="10">
+			<p>好了，如果对我感兴趣，请联系我！</p>
+			<p>请联系我：</p>
+			<ul>
+				<li>Email：shijiaqi1066@sina.com</li>
+			</ul>
+			<p>谢谢观看.</p>
 		</div>
 		<div id="overview" class="step" data-x="-200" data-y="-500" data-scale="2"></div>
 	</div>
