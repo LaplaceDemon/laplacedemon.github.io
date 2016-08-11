@@ -8,11 +8,38 @@
 	<meta name="author" content="shijiaqi">
 	<link href="css/impress-demo.css" rel="stylesheet" />
 	<style type="text/css">
-		
 	</style>
+	<script type="javascript/text">
+	
+	    window.onload = function(){
+	        window.console.log = function(txt){
+	            console += (txt + '\n');
+	        }
+	    
+	        execute.onclick = function(){
+	            var jsCode = jscode.innerText;
+	            eval(jsCode);
+	        }
+	        cleanCode.onclick = function(){
+	            jscode.innerText = "";
+	        }
+	        
+	        cleanConsole.onclick = function(){
+	            console.innerText = "";
+	        }
+	    }
+	</script>
 	<title>shijiaqi-laplacedemon</title>
 </head>
 <body>
-	
+    <div>
+    <textarea id="jscode"></textarea>
+    </div>
+    <button id="cleanCode">清空代码</button>
+    <button id="execute">执行代码</button>
+    <p id="console">
+    
+    </p>
+    <button id="cleanConsole">清空控制台</button>
 </body>
 </html>
