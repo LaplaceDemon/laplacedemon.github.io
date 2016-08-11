@@ -26,19 +26,19 @@
 	            myconsole.innerText = "";
 	        }
 	        
-	    }
-	    
-	    var appendQuick = function(){
-	            var txt = this.innerText;
+	        window.appendQuick = function(elm){
+	            var txt = elm.innerText;
 	            jscode.value += txt;
 	        }
+	        
+	    }
 	</script>
 	<title>shijiaqi-laplacedemon</title>
 </head>
 <body>
     <div>
-    	<button id="quick0" onclick="appendQuick()">console.log(</button>
-    	<button id="quick1" onclick="appendQuick()">);</button>
+    	<button id="quick0" onclick="appendQuick(this)">console.log(</button>
+    	<button id="quick1" onclick="appendQuick(this)">);</button>
     </div>
     <div>
     <textarea id="jscode" rows="15" style="width:100%"></textarea>
