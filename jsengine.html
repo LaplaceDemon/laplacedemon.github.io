@@ -12,7 +12,7 @@
 	
 	    window.onload = function(){
 	        window.console.log = function(txt){
-	            console += (txt + '\n');
+	            myconsole += (txt + '\n');
 	        }
 	    
 	        execute.onclick = function(){
@@ -24,7 +24,7 @@
 	        }
 	        
 	        cleanConsole.onclick = function(){
-	            console.innerText = "";
+	            myconsole.innerText = "";
 	        }
 	    }
 	</script>
@@ -36,7 +36,7 @@
     </div>
     <button id="cleanCode">清空代码</button>
     <button id="execute">执行代码</button>
-    <p id="console">
+    <p id="myconsole">
     
     </p>
     <button id="cleanConsole">清空控制台</button>
